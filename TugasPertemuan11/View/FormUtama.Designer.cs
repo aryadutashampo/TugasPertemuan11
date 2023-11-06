@@ -52,10 +52,10 @@
             this.panelFoto = new System.Windows.Forms.Panel();
             this.labelCP = new System.Windows.Forms.Label();
             this.labelOPR = new System.Windows.Forms.Label();
-            this.vScrollBarTidakBisa = new System.Windows.Forms.VScrollBar();
             this.panelJudulUtama = new System.Windows.Forms.Panel();
             this.labelJudul = new System.Windows.Forms.Label();
             this.pictureBoxWC = new System.Windows.Forms.PictureBox();
+            this.vScrollBarTidakBisa = new System.Windows.Forms.VScrollBar();
             this.panelMenu.SuspendLayout();
             this.panelRegistrasi.SuspendLayout();
             this.panelSertifikat.SuspendLayout();
@@ -295,14 +295,15 @@
             this.panelFoto.Controls.Add(this.vScrollBarTidakBisa);
             this.panelFoto.Controls.Add(this.panelJudulUtama);
             this.panelFoto.Controls.Add(this.pictureBoxWC);
-            this.panelFoto.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelFoto.Location = new System.Drawing.Point(183, 0);
+            this.panelFoto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelFoto.Location = new System.Drawing.Point(179, 0);
             this.panelFoto.Name = "panelFoto";
-            this.panelFoto.Size = new System.Drawing.Size(800, 564);
+            this.panelFoto.Size = new System.Drawing.Size(804, 564);
             this.panelFoto.TabIndex = 12;
             // 
             // labelCP
             // 
+            this.labelCP.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelCP.AutoSize = true;
             this.labelCP.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCP.ForeColor = System.Drawing.Color.White;
@@ -323,21 +324,14 @@
             this.labelOPR.TabIndex = 6;
             this.labelOPR.Text = "Operator : Admin";
             // 
-            // vScrollBarTidakBisa
-            // 
-            this.vScrollBarTidakBisa.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.vScrollBarTidakBisa.Location = new System.Drawing.Point(-4, 0);
-            this.vScrollBarTidakBisa.Name = "vScrollBarTidakBisa";
-            this.vScrollBarTidakBisa.Size = new System.Drawing.Size(21, 564);
-            this.vScrollBarTidakBisa.TabIndex = 0;
-            // 
             // panelJudulUtama
             // 
             this.panelJudulUtama.BackColor = System.Drawing.Color.White;
             this.panelJudulUtama.Controls.Add(this.labelJudul);
-            this.panelJudulUtama.Location = new System.Drawing.Point(3, 0);
+            this.panelJudulUtama.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelJudulUtama.Location = new System.Drawing.Point(0, 0);
             this.panelJudulUtama.Name = "panelJudulUtama";
-            this.panelJudulUtama.Size = new System.Drawing.Size(797, 53);
+            this.panelJudulUtama.Size = new System.Drawing.Size(804, 53);
             this.panelJudulUtama.TabIndex = 2;
             // 
             // labelJudul
@@ -353,6 +347,7 @@
             // 
             // pictureBoxWC
             // 
+            this.pictureBoxWC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.pictureBoxWC.BackgroundImage = global::TugasPertemuan11.Properties.Resources.Partner_;
             this.pictureBoxWC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxWC.Location = new System.Drawing.Point(-97, 97);
@@ -360,6 +355,16 @@
             this.pictureBoxWC.Size = new System.Drawing.Size(997, 392);
             this.pictureBoxWC.TabIndex = 1;
             this.pictureBoxWC.TabStop = false;
+            // 
+            // vScrollBarTidakBisa
+            // 
+            this.vScrollBarTidakBisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.vScrollBarTidakBisa.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.vScrollBarTidakBisa.Location = new System.Drawing.Point(-4, 0);
+            this.vScrollBarTidakBisa.Name = "vScrollBarTidakBisa";
+            this.vScrollBarTidakBisa.Size = new System.Drawing.Size(21, 564);
+            this.vScrollBarTidakBisa.TabIndex = 0;
             // 
             // FormUtama
             // 
@@ -370,7 +375,6 @@
             this.Controls.Add(this.panelFoto);
             this.Controls.Add(this.panelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "FormUtama";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Halaman Utama";
@@ -419,12 +423,12 @@
         private System.Windows.Forms.Button btnMS;
         private System.Windows.Forms.Button btnMPS;
         private System.Windows.Forms.Panel panelFoto;
-        private System.Windows.Forms.VScrollBar vScrollBarTidakBisa;
         private System.Windows.Forms.PictureBox pictureBoxWC;
         private System.Windows.Forms.Label labelOPR;
         private System.Windows.Forms.Panel panelJudulUtama;
         private System.Windows.Forms.Label labelJudul;
         private System.Windows.Forms.Label labelCP;
+        private System.Windows.Forms.VScrollBar vScrollBarTidakBisa;
     }
 }
 

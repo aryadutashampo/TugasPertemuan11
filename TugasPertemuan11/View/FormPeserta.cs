@@ -10,11 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing.Printing;
 
 namespace TugasPertemuan11.View
 {
     public partial class Form_Peserta : Form
     {
+        Validation val = new Validation();
         private PesertaController psCtrl;   
         public Form_Peserta()
         {
@@ -33,16 +35,26 @@ namespace TugasPertemuan11.View
 
         private void btnADDPS_Click(object sender, EventArgs e)
         {
-            psCtrl = new PesertaController();
-            psCtrl.tambahPeserta(txtIDPSPS.Text,txtNAMAPS.Text,txtEMAILPS.Text,txtNTPS.Text);
-            this.Controls.Clear();
-            this.InitializeComponent();
-            txtIDPSPS.Focus();
-            MessageBox.Show("Data Registrasi disimpan");
+            if(val.valName(txtNAMAPS.Text) && val.valEmail(txtEMAILPS.Text))
+            {
+                try
+                {
+                    psCtrl = new PesertaController();
+                    psCtrl.tambahPeserta(txtIDPSPS.Text, txtNAMAPS.Text, txtEMAILPS.Text, txtNTPS.Text);
+                    this.Controls.Clear();
+                    this.InitializeComponent();
+                    txtIDPSPS.Focus();
+                    MessageBox.Show("Data Registrasi disimpan");
 
-            Form_Peserta fps = new Form_Peserta();
-            fps.Show();
-            this.Hide();
+                    Form_Peserta fps = new Form_Peserta();
+                    fps.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnREADPS_Click(object sender, EventArgs e)
@@ -59,12 +71,23 @@ namespace TugasPertemuan11.View
 
         private void btnUPDPS_Click(object sender, EventArgs e)
         {
-            psCtrl = new PesertaController();
-            psCtrl.updatePeserta(txtIDPSPS.Text, txtNAMAPS.Text, txtEMAILPS.Text, txtNTPS.Text);
-            this.Controls.Clear();
-            this.InitializeComponent();
-            txtNAMAPS.Focus();
-            MessageBox.Show("Data Peserta diupdate");
+            if (val.valName(txtNAMAPS.Text) && val.valEmail(txtEMAILPS.Text))
+            {
+                try
+                {
+                    psCtrl = new PesertaController();
+                    psCtrl.updatePeserta(txtIDPSPS.Text, txtNAMAPS.Text, txtEMAILPS.Text, txtNTPS.Text);
+                    this.Controls.Clear();
+                    this.InitializeComponent();
+                    txtNAMAPS.Focus();
+                    MessageBox.Show("Data Peserta diupdate");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
 
@@ -152,6 +175,26 @@ namespace TugasPertemuan11.View
         private void txtNTPS_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back;
+        }
+
+        private void btnSearchPS_Click(object sender, EventArgs e)
+        {
+            dataGridViewPS.DataSource = psCtrl.searchPeserta(txtCPS.Text);
+            dataGridViewPS.RowTemplate.Height = 80;
+        }
+
+        private void printDocumentPS_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap btm = new Bitmap(this.dataGridViewPS.Width, this.dataGridViewPS.Height);
+            dataGridViewPS.DrawToBitmap(btm, new Rectangle(0, 0, this.dataGridViewPS.Width, this.dataGridViewPS.Height));
+            e.Graphics.DrawImage(btm, 100, 100);
+            e.Graphics.DrawString(labelPPS.Text, new Font("Consolas", 23, FontStyle.Bold), Brushes.Black, new Point(310, 50));
+        }
+
+        private void btnPrintPS_Click(object sender, EventArgs e)
+        {
+            printPreviewDialogPS.Document = printDocumentPS;
+            printPreviewDialogPS.ShowDialog();
         }
     }
 }

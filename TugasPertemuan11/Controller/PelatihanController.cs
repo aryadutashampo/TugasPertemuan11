@@ -6,13 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TugasPertemuan11.Model;
 
 namespace TugasPertemuan11.Controller
 {
     internal class PelatihanController : Model.Connection
     {
+        Connection Koneksi = new Connection();
+
         public DataTable tampilPelatihan()
         {
+
             DataTable data = new DataTable();
             try
             {
@@ -25,6 +29,24 @@ namespace TugasPertemuan11.Controller
                 MessageBox.Show(ex.Message);
             }
             return data;
+        }
+
+        public DataTable searchPelatihan(string search)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand
+                    ("SELECT * FROM Pelatihan WHERE CONCAT(id,nama_pelatihan,deskripsi,tanggal_mulai," +
+                    "instruktur,lokasi,harga)LIKE '%" + search + "%'", Koneksi.GetConn());
+                MySqlDataAdapter ad = new MySqlDataAdapter(cmd);
+                ad.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return table;
         }
 
         public DataTable SelectPelatihan(MySqlCommand command)

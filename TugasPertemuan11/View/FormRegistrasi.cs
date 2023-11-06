@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Drawing.Printing;
 
 namespace TugasPertemuan11.View
 {
@@ -94,5 +95,25 @@ namespace TugasPertemuan11.View
             }
         }
 
+        private void btnSearchREG_Click(object sender, EventArgs e)
+        {
+            dataGridViewREG.DataSource = regCtrl.searchRegistrasi(txtCREG.Text);
+            dataGridViewREG.RowTemplate.Height = 80;
+
+        }
+
+        private void printDocumentREG_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap btm = new Bitmap(this.dataGridViewREG.Width, this.dataGridViewREG.Height);
+            dataGridViewREG.DrawToBitmap(btm, new Rectangle(0, 0, this.dataGridViewREG.Width, this.dataGridViewREG.Height));
+            e.Graphics.DrawImage(btm, 100, 100);
+            e.Graphics.DrawString(labelPrintREG.Text, new Font("Consolas", 23, FontStyle.Bold), Brushes.Black, new Point(310, 50));
+        }
+
+        private void btnPrintREG_Click(object sender, EventArgs e)
+        {
+            printPreviewDialogREG.Document = printDocumentREG;
+            printPreviewDialogREG.ShowDialog();
+        }
     }
 }

@@ -6,11 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TugasPertemuan11.Model;
+
 
 namespace TugasPertemuan11.Controller
 {
     internal class SertifikatController : Model.Connection
     {
+        Connection Koneksi = new Connection();
         public DataTable tampilSertifikat()
         {
             DataTable data = new DataTable();
@@ -26,6 +29,24 @@ namespace TugasPertemuan11.Controller
             }
             return data;
         }
+
+        public DataTable searchSertifikat(string search)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand
+                    ("SELECT * FROM Sertifikat WHERE CONCAT(id,nama_sertifikat,deskripsi,pelatihan_id)LIKE '%" + search + "%'", Koneksi.GetConn());
+                MySqlDataAdapter ad = new MySqlDataAdapter(cmd);
+                ad.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return table;
+        }
+
 
         public void tambahSertifikat(string idsertifikat, string namasertifikat,string deskripsi,  string idpelatihan2)
         {

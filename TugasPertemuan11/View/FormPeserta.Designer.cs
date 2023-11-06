@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Peserta));
             this.panelJudulPS = new System.Windows.Forms.Panel();
             this.labelJudulPS = new System.Windows.Forms.Label();
             this.dataGridViewPS = new System.Windows.Forms.DataGridView();
@@ -46,6 +47,13 @@
             this.btnREADPS = new System.Windows.Forms.Button();
             this.btnUPDPS = new System.Windows.Forms.Button();
             this.btnDELPS = new System.Windows.Forms.Button();
+            this.btnSearchPS = new System.Windows.Forms.Button();
+            this.btnPrintPS = new System.Windows.Forms.Button();
+            this.printPreviewDialogPS = new System.Windows.Forms.PrintPreviewDialog();
+            this.labelPPS = new System.Windows.Forms.Label();
+            this.labelCPS = new System.Windows.Forms.Label();
+            this.txtCPS = new System.Windows.Forms.TextBox();
+            this.printDocumentPS = new System.Drawing.Printing.PrintDocument();
             this.panelJudulPS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPS)).BeginInit();
             this.SuspendLayout();
@@ -53,19 +61,21 @@
             // panelJudulPS
             // 
             this.panelJudulPS.BackColor = System.Drawing.Color.DarkMagenta;
+            this.panelJudulPS.Controls.Add(this.labelPPS);
             this.panelJudulPS.Controls.Add(this.labelJudulPS);
             this.panelJudulPS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelJudulPS.Location = new System.Drawing.Point(0, 0);
             this.panelJudulPS.Name = "panelJudulPS";
-            this.panelJudulPS.Size = new System.Drawing.Size(639, 57);
+            this.panelJudulPS.Size = new System.Drawing.Size(899, 57);
             this.panelJudulPS.TabIndex = 15;
             // 
             // labelJudulPS
             // 
+            this.labelJudulPS.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelJudulPS.AutoSize = true;
             this.labelJudulPS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelJudulPS.ForeColor = System.Drawing.Color.White;
-            this.labelJudulPS.Location = new System.Drawing.Point(246, 9);
+            this.labelJudulPS.Location = new System.Drawing.Point(390, 9);
             this.labelJudulPS.Name = "labelJudulPS";
             this.labelJudulPS.Size = new System.Drawing.Size(164, 28);
             this.labelJudulPS.TabIndex = 0;
@@ -73,20 +83,24 @@
             // 
             // dataGridViewPS
             // 
+            this.dataGridViewPS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewPS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPS.Location = new System.Drawing.Point(12, 61);
             this.dataGridViewPS.Name = "dataGridViewPS";
             this.dataGridViewPS.RowHeadersWidth = 51;
             this.dataGridViewPS.RowTemplate.Height = 24;
-            this.dataGridViewPS.Size = new System.Drawing.Size(614, 271);
+            this.dataGridViewPS.Size = new System.Drawing.Size(875, 271);
             this.dataGridViewPS.TabIndex = 14;
             // 
             // btnCCPS
             // 
+            this.btnCCPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCCPS.BackColor = System.Drawing.Color.Red;
             this.btnCCPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCCPS.ForeColor = System.Drawing.Color.White;
-            this.btnCCPS.Location = new System.Drawing.Point(524, 455);
+            this.btnCCPS.Location = new System.Drawing.Point(765, 448);
             this.btnCCPS.Name = "btnCCPS";
             this.btnCCPS.Size = new System.Drawing.Size(102, 44);
             this.btnCCPS.TabIndex = 25;
@@ -96,12 +110,13 @@
             // 
             // btnCLEARPS
             // 
+            this.btnCLEARPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCLEARPS.BackColor = System.Drawing.Color.Orange;
             this.btnCLEARPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCLEARPS.ForeColor = System.Drawing.Color.White;
-            this.btnCLEARPS.Location = new System.Drawing.Point(416, 455);
+            this.btnCLEARPS.Location = new System.Drawing.Point(657, 448);
             this.btnCLEARPS.Name = "btnCLEARPS";
-            this.btnCLEARPS.Size = new System.Drawing.Size(102, 44);
+            this.btnCLEARPS.Size = new System.Drawing.Size(102, 43);
             this.btnCLEARPS.TabIndex = 24;
             this.btnCLEARPS.Text = "CLEAR";
             this.btnCLEARPS.UseVisualStyleBackColor = false;
@@ -109,10 +124,11 @@
             // 
             // btnADDPS
             // 
+            this.btnADDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnADDPS.BackColor = System.Drawing.Color.DarkMagenta;
             this.btnADDPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnADDPS.ForeColor = System.Drawing.Color.White;
-            this.btnADDPS.Location = new System.Drawing.Point(417, 355);
+            this.btnADDPS.Location = new System.Drawing.Point(442, 398);
             this.btnADDPS.Name = "btnADDPS";
             this.btnADDPS.Size = new System.Drawing.Size(102, 44);
             this.btnADDPS.TabIndex = 23;
@@ -122,6 +138,7 @@
             // 
             // txtEMAILPS
             // 
+            this.txtEMAILPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtEMAILPS.Location = new System.Drawing.Point(184, 430);
             this.txtEMAILPS.Multiline = true;
             this.txtEMAILPS.Name = "txtEMAILPS";
@@ -131,6 +148,7 @@
             // 
             // txtNAMAPS
             // 
+            this.txtNAMAPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNAMAPS.Location = new System.Drawing.Point(184, 391);
             this.txtNAMAPS.Multiline = true;
             this.txtNAMAPS.Name = "txtNAMAPS";
@@ -140,6 +158,7 @@
             // 
             // txtIDPSPS
             // 
+            this.txtIDPSPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIDPSPS.Location = new System.Drawing.Point(184, 355);
             this.txtIDPSPS.Multiline = true;
             this.txtIDPSPS.Name = "txtIDPSPS";
@@ -149,6 +168,7 @@
             // 
             // labelEmailPS
             // 
+            this.labelEmailPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEmailPS.AutoSize = true;
             this.labelEmailPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEmailPS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -160,6 +180,7 @@
             // 
             // labelNamaPS
             // 
+            this.labelNamaPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelNamaPS.AutoSize = true;
             this.labelNamaPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNamaPS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -171,14 +192,17 @@
             // 
             // panelTutupPS
             // 
+            this.panelTutupPS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTutupPS.BackColor = System.Drawing.Color.DarkMagenta;
             this.panelTutupPS.Location = new System.Drawing.Point(12, 328);
             this.panelTutupPS.Name = "panelTutupPS";
-            this.panelTutupPS.Size = new System.Drawing.Size(615, 10);
+            this.panelTutupPS.Size = new System.Drawing.Size(875, 10);
             this.panelTutupPS.TabIndex = 16;
             // 
             // labelIDPSPS
             // 
+            this.labelIDPSPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelIDPSPS.AutoSize = true;
             this.labelIDPSPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIDPSPS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -190,6 +214,7 @@
             // 
             // labelNTPS
             // 
+            this.labelNTPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelNTPS.AutoSize = true;
             this.labelNTPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNTPS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -201,6 +226,7 @@
             // 
             // txtNTPS
             // 
+            this.txtNTPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNTPS.Location = new System.Drawing.Point(184, 470);
             this.txtNTPS.Multiline = true;
             this.txtNTPS.Name = "txtNTPS";
@@ -210,10 +236,11 @@
             // 
             // btnREADPS
             // 
+            this.btnREADPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnREADPS.BackColor = System.Drawing.Color.DarkMagenta;
             this.btnREADPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnREADPS.ForeColor = System.Drawing.Color.White;
-            this.btnREADPS.Location = new System.Drawing.Point(524, 355);
+            this.btnREADPS.Location = new System.Drawing.Point(549, 398);
             this.btnREADPS.Name = "btnREADPS";
             this.btnREADPS.Size = new System.Drawing.Size(102, 44);
             this.btnREADPS.TabIndex = 28;
@@ -223,10 +250,11 @@
             // 
             // btnUPDPS
             // 
+            this.btnUPDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUPDPS.BackColor = System.Drawing.Color.DarkMagenta;
             this.btnUPDPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUPDPS.ForeColor = System.Drawing.Color.White;
-            this.btnUPDPS.Location = new System.Drawing.Point(417, 405);
+            this.btnUPDPS.Location = new System.Drawing.Point(442, 448);
             this.btnUPDPS.Name = "btnUPDPS";
             this.btnUPDPS.Size = new System.Drawing.Size(102, 44);
             this.btnUPDPS.TabIndex = 29;
@@ -236,10 +264,11 @@
             // 
             // btnDELPS
             // 
+            this.btnDELPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDELPS.BackColor = System.Drawing.Color.DarkMagenta;
             this.btnDELPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDELPS.ForeColor = System.Drawing.Color.White;
-            this.btnDELPS.Location = new System.Drawing.Point(524, 405);
+            this.btnDELPS.Location = new System.Drawing.Point(549, 448);
             this.btnDELPS.Name = "btnDELPS";
             this.btnDELPS.Size = new System.Drawing.Size(102, 44);
             this.btnDELPS.TabIndex = 30;
@@ -247,11 +276,86 @@
             this.btnDELPS.UseVisualStyleBackColor = false;
             this.btnDELPS.Click += new System.EventHandler(this.btnDELPS_Click);
             // 
+            // btnSearchPS
+            // 
+            this.btnSearchPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchPS.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnSearchPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchPS.ForeColor = System.Drawing.Color.White;
+            this.btnSearchPS.Location = new System.Drawing.Point(657, 398);
+            this.btnSearchPS.Name = "btnSearchPS";
+            this.btnSearchPS.Size = new System.Drawing.Size(102, 44);
+            this.btnSearchPS.TabIndex = 31;
+            this.btnSearchPS.Text = "SEARCH";
+            this.btnSearchPS.UseVisualStyleBackColor = false;
+            this.btnSearchPS.Click += new System.EventHandler(this.btnSearchPS_Click);
+            // 
+            // btnPrintPS
+            // 
+            this.btnPrintPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintPS.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnPrintPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintPS.ForeColor = System.Drawing.Color.White;
+            this.btnPrintPS.Location = new System.Drawing.Point(765, 398);
+            this.btnPrintPS.Name = "btnPrintPS";
+            this.btnPrintPS.Size = new System.Drawing.Size(102, 44);
+            this.btnPrintPS.TabIndex = 32;
+            this.btnPrintPS.Text = "PRINT";
+            this.btnPrintPS.UseVisualStyleBackColor = false;
+            this.btnPrintPS.Click += new System.EventHandler(this.btnPrintPS_Click);
+            // 
+            // printPreviewDialogPS
+            // 
+            this.printPreviewDialogPS.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialogPS.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialogPS.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialogPS.Enabled = true;
+            this.printPreviewDialogPS.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialogPS.Icon")));
+            this.printPreviewDialogPS.Name = "printPreviewDialogPS";
+            this.printPreviewDialogPS.Visible = false;
+            // 
+            // labelPPS
+            // 
+            this.labelPPS.AutoSize = true;
+            this.labelPPS.Location = new System.Drawing.Point(1, 2);
+            this.labelPPS.Name = "labelPPS";
+            this.labelPPS.Size = new System.Drawing.Size(0, 16);
+            this.labelPPS.TabIndex = 1;
+            // 
+            // labelCPS
+            // 
+            this.labelCPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelCPS.AutoSize = true;
+            this.labelCPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCPS.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.labelCPS.Location = new System.Drawing.Point(11, 502);
+            this.labelCPS.Name = "labelCPS";
+            this.labelCPS.Size = new System.Drawing.Size(149, 23);
+            this.labelCPS.TabIndex = 33;
+            this.labelCPS.Text = "Cari Peserta        :";
+            // 
+            // txtCPS
+            // 
+            this.txtCPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtCPS.Location = new System.Drawing.Point(184, 503);
+            this.txtCPS.Multiline = true;
+            this.txtCPS.Name = "txtCPS";
+            this.txtCPS.Size = new System.Drawing.Size(226, 22);
+            this.txtCPS.TabIndex = 34;
+            // 
+            // printDocumentPS
+            // 
+            this.printDocumentPS.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentPS_PrintPage);
+            // 
             // Form_Peserta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 516);
+            this.ClientSize = new System.Drawing.Size(899, 543);
+            this.Controls.Add(this.txtCPS);
+            this.Controls.Add(this.labelCPS);
+            this.Controls.Add(this.btnPrintPS);
+            this.Controls.Add(this.btnSearchPS);
             this.Controls.Add(this.btnDELPS);
             this.Controls.Add(this.btnUPDPS);
             this.Controls.Add(this.btnREADPS);
@@ -269,7 +373,6 @@
             this.Controls.Add(this.labelEmailPS);
             this.Controls.Add(this.labelNamaPS);
             this.Controls.Add(this.panelTutupPS);
-            this.MaximizeBox = false;
             this.Name = "Form_Peserta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Peserta";
@@ -302,5 +405,12 @@
         private System.Windows.Forms.Button btnREADPS;
         private System.Windows.Forms.Button btnUPDPS;
         private System.Windows.Forms.Button btnDELPS;
+        private System.Windows.Forms.Label labelPPS;
+        private System.Windows.Forms.Button btnSearchPS;
+        private System.Windows.Forms.Button btnPrintPS;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialogPS;
+        private System.Windows.Forms.Label labelCPS;
+        private System.Windows.Forms.TextBox txtCPS;
+        private System.Drawing.Printing.PrintDocument printDocumentPS;
     }
 }

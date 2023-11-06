@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Sertifikat));
             this.panelJudulS = new System.Windows.Forms.Panel();
             this.labelSertifikat = new System.Windows.Forms.Label();
             this.dataGridViewS = new System.Windows.Forms.DataGridView();
@@ -43,6 +44,13 @@
             this.panelS = new System.Windows.Forms.Panel();
             this.labelIDPS = new System.Windows.Forms.Label();
             this.txtIDPS = new System.Windows.Forms.TextBox();
+            this.labelCST = new System.Windows.Forms.Label();
+            this.txtSearchS = new System.Windows.Forms.TextBox();
+            this.btnSearchS = new System.Windows.Forms.Button();
+            this.btnPrintS = new System.Windows.Forms.Button();
+            this.labelPrintS = new System.Windows.Forms.Label();
+            this.printDocumentS = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialogS = new System.Windows.Forms.PrintPreviewDialog();
             this.panelJudulS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewS)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +58,7 @@
             // panelJudulS
             // 
             this.panelJudulS.BackColor = System.Drawing.Color.DarkMagenta;
+            this.panelJudulS.Controls.Add(this.labelPrintS);
             this.panelJudulS.Controls.Add(this.labelSertifikat);
             this.panelJudulS.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelJudulS.Location = new System.Drawing.Point(0, 0);
@@ -59,6 +68,7 @@
             // 
             // labelSertifikat
             // 
+            this.labelSertifikat.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelSertifikat.AutoSize = true;
             this.labelSertifikat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSertifikat.ForeColor = System.Drawing.Color.White;
@@ -70,6 +80,9 @@
             // 
             // dataGridViewS
             // 
+            this.dataGridViewS.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewS.Location = new System.Drawing.Point(12, 67);
             this.dataGridViewS.Name = "dataGridViewS";
@@ -80,10 +93,11 @@
             // 
             // btnCCS
             // 
+            this.btnCCS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCCS.BackColor = System.Drawing.Color.Red;
             this.btnCCS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCCS.ForeColor = System.Drawing.Color.White;
-            this.btnCCS.Location = new System.Drawing.Point(468, 410);
+            this.btnCCS.Location = new System.Drawing.Point(466, 465);
             this.btnCCS.Name = "btnCCS";
             this.btnCCS.Size = new System.Drawing.Size(102, 44);
             this.btnCCS.TabIndex = 25;
@@ -93,6 +107,7 @@
             // 
             // btnCLEARS
             // 
+            this.btnCLEARS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCLEARS.BackColor = System.Drawing.Color.Orange;
             this.btnCLEARS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCLEARS.ForeColor = System.Drawing.Color.White;
@@ -106,6 +121,7 @@
             // 
             // btnADDS
             // 
+            this.btnADDS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnADDS.BackColor = System.Drawing.Color.DarkMagenta;
             this.btnADDS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnADDS.ForeColor = System.Drawing.Color.White;
@@ -119,6 +135,7 @@
             // 
             // txtDS
             // 
+            this.txtDS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtDS.Location = new System.Drawing.Point(184, 436);
             this.txtDS.Multiline = true;
             this.txtDS.Name = "txtDS";
@@ -128,6 +145,7 @@
             // 
             // txtNS
             // 
+            this.txtNS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNS.Location = new System.Drawing.Point(184, 397);
             this.txtNS.Multiline = true;
             this.txtNS.Name = "txtNS";
@@ -137,6 +155,7 @@
             // 
             // txtIDS
             // 
+            this.txtIDS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIDS.Location = new System.Drawing.Point(184, 361);
             this.txtIDS.Multiline = true;
             this.txtIDS.Name = "txtIDS";
@@ -146,6 +165,7 @@
             // 
             // labelDS
             // 
+            this.labelDS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelDS.AutoSize = true;
             this.labelDS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -157,6 +177,7 @@
             // 
             // labelNS
             // 
+            this.labelNS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelNS.AutoSize = true;
             this.labelNS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNS.ForeColor = System.Drawing.Color.DarkMagenta;
@@ -168,17 +189,20 @@
             // 
             // labelIDS
             // 
+            this.labelIDS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelIDS.AutoSize = true;
             this.labelIDS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIDS.ForeColor = System.Drawing.Color.DarkMagenta;
             this.labelIDS.Location = new System.Drawing.Point(12, 359);
             this.labelIDS.Name = "labelIDS";
-            this.labelIDS.Size = new System.Drawing.Size(149, 23);
+            this.labelIDS.Size = new System.Drawing.Size(154, 23);
             this.labelIDS.TabIndex = 17;
-            this.labelIDS.Text = "ID Sertifikat       :";
+            this.labelIDS.Text = "ID Sertifikat        :";
             // 
             // panelS
             // 
+            this.panelS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelS.BackColor = System.Drawing.Color.DarkMagenta;
             this.panelS.Location = new System.Drawing.Point(12, 334);
             this.panelS.Name = "panelS";
@@ -187,10 +211,11 @@
             // 
             // labelIDPS
             // 
+            this.labelIDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelIDPS.AutoSize = true;
             this.labelIDPS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIDPS.ForeColor = System.Drawing.Color.DarkMagenta;
-            this.labelIDPS.Location = new System.Drawing.Point(11, 478);
+            this.labelIDPS.Location = new System.Drawing.Point(15, 476);
             this.labelIDPS.Name = "labelIDPS";
             this.labelIDPS.Size = new System.Drawing.Size(151, 23);
             this.labelIDPS.TabIndex = 26;
@@ -198,6 +223,7 @@
             // 
             // txtIDPS
             // 
+            this.txtIDPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtIDPS.Location = new System.Drawing.Point(184, 478);
             this.txtIDPS.Multiline = true;
             this.txtIDPS.Name = "txtIDPS";
@@ -205,11 +231,86 @@
             this.txtIDPS.TabIndex = 27;
             this.txtIDPS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDPS_KeyPress);
             // 
+            // labelCST
+            // 
+            this.labelCST.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelCST.AutoSize = true;
+            this.labelCST.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCST.ForeColor = System.Drawing.Color.DarkMagenta;
+            this.labelCST.Location = new System.Drawing.Point(11, 515);
+            this.labelCST.Name = "labelCST";
+            this.labelCST.Size = new System.Drawing.Size(153, 23);
+            this.labelCST.TabIndex = 28;
+            this.labelCST.Text = "Cari Sertifikat     :";
+            // 
+            // txtSearchS
+            // 
+            this.txtSearchS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSearchS.Location = new System.Drawing.Point(184, 517);
+            this.txtSearchS.Multiline = true;
+            this.txtSearchS.Name = "txtSearchS";
+            this.txtSearchS.Size = new System.Drawing.Size(226, 22);
+            this.txtSearchS.TabIndex = 29;
+            // 
+            // btnSearchS
+            // 
+            this.btnSearchS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchS.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnSearchS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchS.ForeColor = System.Drawing.Color.White;
+            this.btnSearchS.Location = new System.Drawing.Point(416, 411);
+            this.btnSearchS.Name = "btnSearchS";
+            this.btnSearchS.Size = new System.Drawing.Size(102, 44);
+            this.btnSearchS.TabIndex = 30;
+            this.btnSearchS.Text = "SEARCH";
+            this.btnSearchS.UseVisualStyleBackColor = false;
+            this.btnSearchS.Click += new System.EventHandler(this.btnSearchS_Click);
+            // 
+            // btnPrintS
+            // 
+            this.btnPrintS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintS.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnPrintS.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintS.ForeColor = System.Drawing.Color.White;
+            this.btnPrintS.Location = new System.Drawing.Point(525, 411);
+            this.btnPrintS.Name = "btnPrintS";
+            this.btnPrintS.Size = new System.Drawing.Size(102, 44);
+            this.btnPrintS.TabIndex = 31;
+            this.btnPrintS.Text = "PRINT";
+            this.btnPrintS.UseVisualStyleBackColor = false;
+            this.btnPrintS.Click += new System.EventHandler(this.btnPrintS_Click);
+            // 
+            // labelPrintS
+            // 
+            this.labelPrintS.AutoSize = true;
+            this.labelPrintS.Location = new System.Drawing.Point(6, 9);
+            this.labelPrintS.Name = "labelPrintS";
+            this.labelPrintS.Size = new System.Drawing.Size(0, 16);
+            this.labelPrintS.TabIndex = 1;
+            // 
+            // printDocumentS
+            // 
+            this.printDocumentS.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentS_PrintPage);
+            // 
+            // printPreviewDialogS
+            // 
+            this.printPreviewDialogS.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialogS.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialogS.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialogS.Enabled = true;
+            this.printPreviewDialogS.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialogS.Icon")));
+            this.printPreviewDialogS.Name = "printPreviewDialogS";
+            this.printPreviewDialogS.Visible = false;
+            // 
             // Form_Sertifikat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 510);
+            this.ClientSize = new System.Drawing.Size(637, 547);
+            this.Controls.Add(this.btnPrintS);
+            this.Controls.Add(this.btnSearchS);
+            this.Controls.Add(this.txtSearchS);
+            this.Controls.Add(this.labelCST);
             this.Controls.Add(this.txtIDPS);
             this.Controls.Add(this.labelIDPS);
             this.Controls.Add(this.panelJudulS);
@@ -224,7 +325,6 @@
             this.Controls.Add(this.labelNS);
             this.Controls.Add(this.labelIDS);
             this.Controls.Add(this.panelS);
-            this.MaximizeBox = false;
             this.Name = "Form_Sertifikat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Sertifikat";
@@ -254,5 +354,12 @@
         private System.Windows.Forms.Panel panelS;
         private System.Windows.Forms.Label labelIDPS;
         private System.Windows.Forms.TextBox txtIDPS;
+        private System.Windows.Forms.Label labelPrintS;
+        private System.Windows.Forms.Label labelCST;
+        private System.Windows.Forms.TextBox txtSearchS;
+        private System.Windows.Forms.Button btnSearchS;
+        private System.Windows.Forms.Button btnPrintS;
+        private System.Drawing.Printing.PrintDocument printDocumentS;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialogS;
     }
 }

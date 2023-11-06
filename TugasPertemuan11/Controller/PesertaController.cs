@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TugasPertemuan11.Model;
 
 
 namespace TugasPertemuan11.Controller
 {
     internal class PesertaController : Model.Connection
     {
+        Connection Koneksi = new Connection();
         public DataTable tampilPeserta()
         {
             DataTable data = new DataTable();
@@ -27,6 +29,24 @@ namespace TugasPertemuan11.Controller
             }
             return data;
         }
+
+        public DataTable searchPeserta(string search)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand
+                    ("SELECT * FROM Peserta WHERE CONCAT(id,nama_peserta,email,no_telepon)LIKE '%" + search + "%'", Koneksi.GetConn());
+                MySqlDataAdapter ad = new MySqlDataAdapter(cmd);
+                ad.Fill(table);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return table;
+        }
+
 
         public DataTable SelectPeserta(MySqlCommand command)
         {

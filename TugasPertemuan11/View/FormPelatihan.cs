@@ -10,12 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection.Emit;
+using System.Drawing.Printing;
 
 namespace TugasPertemuan11.View
 {
     public partial class Form_Pelatihan : Form
     {
         private PelatihanController pltCtrl;
+        Validation val = new Validation();
         public Form_Pelatihan()
         {
             pltCtrl = new PelatihanController();
@@ -82,16 +85,26 @@ namespace TugasPertemuan11.View
 
         private void btnADDPL_Click_1(object sender, EventArgs e)
         {
-            pltCtrl = new PelatihanController();
-            pltCtrl.tambahPelatihan(txtIDPL.Text, txtNAMAPL.Text, txtDESKRIPSIPL.Text, dateTimePickerPL.Value, txtINSPL.Text, txtLOKASIPL.Text, txtHargaPL.Text);
-            this.Controls.Clear();
-            this.InitializeComponent();
-            txtIDPL.Focus();
-            MessageBox.Show("Data Pelatihan disimpan");
 
-            Form_Pelatihan fpl = new Form_Pelatihan();
-            fpl.Show();
-            this.Hide();
+            if (val.valName(txtLOKASIPL.Text) && val.valName(txtINSPL.Text) && val.valAlamat(txtLOKASIPL.Text)){
+                try
+                {
+                    pltCtrl = new PelatihanController();
+                    pltCtrl.tambahPelatihan(txtIDPL.Text, txtNAMAPL.Text, txtDESKRIPSIPL.Text, dateTimePickerPL.Value, txtINSPL.Text, txtLOKASIPL.Text, txtHargaPL.Text);
+                    this.Controls.Clear();
+                    this.InitializeComponent();
+                    txtIDPL.Focus();
+                    MessageBox.Show("Data Pelatihan disimpan");
+
+                    Form_Pelatihan fpl = new Form_Pelatihan();
+                    fpl.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnREADPL_Click_1(object sender, EventArgs e)
@@ -102,18 +115,29 @@ namespace TugasPertemuan11.View
 
         private void btnUPDPL_Click_1(object sender, EventArgs e)
         {
-            pltCtrl = new PelatihanController();
-            pltCtrl.updatePelatihan(txtIDPL.Text, txtNAMAPL.Text, txtDESKRIPSIPL.Text, dateTimePickerPL.Value, txtINSPL.Text, txtLOKASIPL.Text, txtHargaPL.Text);
-            this.Controls.Clear();
-            this.InitializeComponent();
-            txtIDPL.Focus();
-            MessageBox.Show("Data Pelatihan diupdate");
-            Form_Pelatihan fpl = new Form_Pelatihan();
-            fpl.Show();
-            this.Hide();
+            if (val.valName(txtLOKASIPL.Text) && val.valName(txtINSPL.Text) && val.valAlamat(txtLOKASIPL.Text))
+            {
+                try
+                {
+                    pltCtrl = new PelatihanController();
+                    pltCtrl.updatePelatihan(txtIDPL.Text, txtNAMAPL.Text, txtDESKRIPSIPL.Text, dateTimePickerPL.Value, txtINSPL.Text, txtLOKASIPL.Text, txtHargaPL.Text);
+                    this.Controls.Clear();
+                    this.InitializeComponent();
+                    txtIDPL.Focus();
+                    MessageBox.Show("Data Pelatihan diupdate");
+                    Form_Pelatihan fpl = new Form_Pelatihan();
+                    fpl.Show();
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
 
-        private void btnDELPL_Click_1(object sender, EventArgs e)
+            private void btnDELPL_Click_1(object sender, EventArgs e)
         {
             if (verifyDel())
             {
@@ -163,6 +187,26 @@ namespace TugasPertemuan11.View
         private void txtHargaPL_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back;
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dataGridViewPL.DataSource = pltCtrl.searchPelatihan(txtSearchPL.Text);
+            dataGridViewPL.RowTemplate.Height = 80;
+        }
+
+        private void printDocumentPL_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap btm = new Bitmap(this.dataGridViewPL.Width, this.dataGridViewPL.Height);
+            dataGridViewPL.DrawToBitmap(btm, new Rectangle(0, 0, this.dataGridViewPL.Width, this.dataGridViewPL.Height));
+            e.Graphics.DrawImage(btm, 100, 100);
+            e.Graphics.DrawString(labelPrintPL.Text, new Font("Consolas", 23, FontStyle.Bold), Brushes.Black, new Point(310, 50));
+        }
+
+        private void btnPrintPL_Click(object sender, EventArgs e)
+        {
+            printPreviewDialogPL.Document = printDocumentPL;
+            printPreviewDialogPL.ShowDialog();
         }
     }
 }
